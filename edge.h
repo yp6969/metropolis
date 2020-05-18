@@ -15,7 +15,8 @@ public:
     edge(unsigned int id) : id(id) {}
     ~edge();
 
-    void addCar(unsigned int id);
+    void addCar(unsigned int id); // add a new car to the list
+    int getProbability();
     void moveCar(unsigned int id);
 
     /*

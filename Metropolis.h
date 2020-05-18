@@ -20,6 +20,8 @@ public:
     Metropolis(double** graph , unsigned int size);
     ~Metropolis();
 
+    void timeSkip();
+
     void printPollution();
     /*
      * getters and setters

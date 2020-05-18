@@ -19,6 +19,14 @@ Metropolis::~Metropolis() {
     delete metro;
 }
 
+void Metropolis::timeSkip(){
+    for(int i=0 ; i<size ; i++){
+
+    }
+}
+
+
+
 void Metropolis::printPollution(){
     double poll;
     for(int i=0 ; i<size ; i++){
