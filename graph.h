@@ -15,6 +15,7 @@ public:
 
     graph(double** graph , unsigned int size);
     ~graph();
+    vertice* operator() (int i , int j) const { return road[i][j]; }
 
 };
 

@@ -12,10 +12,11 @@ private:
     car* carList;
 
 public:
-    edge(unsigned int id);
+    edge(unsigned int id) : id(id) {}
     ~edge();
 
     void addCar(unsigned int id);
+    void moveCar(unsigned int id);
 
     /*
      * getters and setters

@@ -13,8 +13,8 @@ graph::graph(double** graph ,unsigned int size) : size(size) {
     for(int i=0 ; i<size ; i++)
         for(int j ; j<size ; j++){
             if( graph[i][j] != 0 ){
-                road[i][j] = new vertice(i , j , graph[i][j]);
-            }
+                road[i][j] = new vertice( i , j , graph[i][j]);
+            }else road[i][j] = NULL;
         }
 }
 

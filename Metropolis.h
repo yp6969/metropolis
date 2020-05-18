@@ -4,8 +4,11 @@
 
 #ifndef METROPOLIN_METROPOLIS_H
 #define METROPOLIN_METROPOLIS_H
+#include <iostream>
+#include <cmath>
 #include "edge.h"
 #include "graph.h"
+using namespace std;
 
 class Metropolis {
 private:
@@ -17,7 +20,7 @@ public:
     Metropolis(double** graph , unsigned int size);
     ~Metropolis();
 
-    void print();
+    void printPollution();
     /*
      * getters and setters
      */

@@ -4,7 +4,7 @@
 
 #ifndef METROPOLIN_VERTICE_H
 #define METROPOLIN_VERTICE_H
-
+#include <cstdio>
 
 class vertice {
 private:
