@@ -13,14 +13,15 @@ using namespace std;
 class Metropolis {
 private:
     const unsigned int size;
+    unsigned int num_of_ticks;
     edge** junction;
-    graph* metro;
+    vertice** road;
 
 public:
     Metropolis(double** graph , unsigned int size);
     ~Metropolis();
 
-    void timeSkip();
+    void tick(); //iterate time skip
 
     void printPollution();
     /*
@@ -28,9 +29,6 @@ public:
      */
     const unsigned int getSize() const { return size;}
     edge& getJunction(int id) const{ return *junction[id];}
-    //void setJunction(edge **junction);
-    graph& getMetro() const{ return *metro;}
-    //void setMetro(graph *metro);
 };
 
 

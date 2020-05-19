@@ -9,22 +9,25 @@
 class car {
 private:
     const unsigned int id;
-    int location;
+    unsigned int location;
+    unsigned int num_of_move;
 
 public:
     car* next;
-    car* prev;
 
     car(int id , int location);
-    car(car& c);
+    car(const car& c);
 
 
     /*
      * getters setters
      */
-    int getLocation() const;
-    void setLocation(int location);
-    const unsigned int getId() const;
+    const unsigned int getId() const {return id;}
+    unsigned int getLocation() const {return location;}
+    void setLocation(int location) { this->location = location;}
+    unsigned int get_num_of_move() const{return num_of_move;}
+    void operator++(int) {num_of_move++;}
+
 };
 
 

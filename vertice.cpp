@@ -5,32 +5,18 @@
 //
 // Created by Pinhas on 14/05/2020.
 
-vertice::vertice(const unsigned int frome, const unsigned int to, const double length) :
-frome(frome),
+vertice::vertice(const unsigned int from, const unsigned int to, const double length) :
+from(from),
 to(to),
 length(length),
 pollution(0) {}
 
-void vertice::operator++(){
-    pollution += poll_const/length;
-}
+const unsigned int vertice::getFrom() const {return from;}
 
-const unsigned int vertice::getFrome() const {
-    return frome;
-}
+const unsigned int vertice::getTo() const {return to;}
 
-const unsigned int vertice::getTo() const {
-    return to;
-}
+const double vertice::getLength() const {return length;}
 
-const double vertice::getLength() const {
-    return length;
-}
+double vertice::getPollution() const {return pollution;}
 
-double vertice::getPollution() const {
-    return pollution;
-}
-
-void vertice::setPollution(double pollution) {
-    vertice::pollution = pollution;
-}
+void vertice::setPollution(double pollution) {this->pollution = pollution;}

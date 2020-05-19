@@ -4,18 +4,6 @@
 
 #include "car.h"
 
-car::car(int id , int location) : id(id) , location(location) {}
+car::car(int id , int location) : id(id) , location(location) , num_of_move(0) {}
 
-//car::car(car& c) : id(c.id) , location(){}
-
-const unsigned int car::getId() const {
-    return id;
-}
-
-int car::getLocation() const {
-    return location;
-}
-
-void car::setLocation(int location) {
-    car::location = location;
-}
+car::car(const car& c) : id(c.id) , location(c.location) , num_of_move(c.num_of_move) {}

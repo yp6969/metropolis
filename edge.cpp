@@ -4,13 +4,22 @@
 
 #include "edge.h"
 
-void edge::addCar(unsigned int id) {
-    car* temp = new car(id , this->id);
-    temp->next = carList;
-    carList->prev = temp;
-    carList = temp;
+void edge::addCar(car* c) {
+    car* temp = carList;
+    while(temp->next){
+        temp = temp->next;
+    }
+    temp->next = c;
 }
 
-void edge::moveCar(unsigned int id){
+car* edge::removeCar(){
+    car* temp = carList;
+    carList = carList->next;
+    temp->next = NULL;
+    return temp;
+}
 
+int edge::getProbability() {
+    srand (time(NULL)); //******* maybe ot side of function
+    return neighbor[ rand() % (number_of_neighbors+1)];
 }

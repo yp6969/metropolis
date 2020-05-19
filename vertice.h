@@ -8,7 +8,7 @@
 
 class vertice {
 private:
-    const unsigned int frome;
+    const unsigned int from;
     const unsigned int to;
     const double length;
     double pollution;
@@ -16,14 +16,15 @@ private:
 public:
     static unsigned int poll_const;
 
-    vertice(const unsigned int frome, const unsigned int to, const double length);
+    vertice(const unsigned int from, const unsigned int to, const double length);
 
-    void operator++(); // update the pollution
+    void operator++(int){ pollution += poll_const/length;} // update the pollution
+
 
     /*
      * getters and setters
      */
-    const unsigned int getFrome() const;
+    const unsigned int getFrom() const;
 
     const unsigned int getTo() const;
 
