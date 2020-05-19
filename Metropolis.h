@@ -4,11 +4,9 @@
 
 #ifndef METROPOLIN_METROPOLIS_H
 #define METROPOLIN_METROPOLIS_H
-#include <iostream>
 #include <cmath>
 #include "edge.h"
 #include "graph.h"
-using namespace std;
 
 class Metropolis {
 private:
@@ -16,19 +14,22 @@ private:
     unsigned int num_of_ticks;
     edge** junction;
     vertice** road;
+    unsigned int num_of_roads;
 
 public:
     Metropolis(double** graph , unsigned int size);
     ~Metropolis();
 
     void tick(); //iterate time skip
-
     void printPollution();
-    /*
-     * getters and setters
-     */
+    void printCarList();
+
+
+        /*
+         * getters and setters
+         */
+    vertice* getRoad(int from , int to );
     const unsigned int getSize() const { return size;}
-    edge& getJunction(int id) const{ return *junction[id];}
 };
 
 

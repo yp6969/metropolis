@@ -4,6 +4,15 @@
 
 #include "edge.h"
 
+edge::edge(unsigned int id , unsigned int number_of_neighbors) : id(id) , number_of_neighbors(number_of_neighbors){
+    neighbor = new unsigned int[number_of_neighbors+1];
+    neighbor[0] = id; // neighbor[0] is me !
+}
+
+/**
+ * adding car to the end of the car list
+ * @param c
+ */
 void edge::addCar(car* c) {
     car* temp = carList;
     while(temp->next){
@@ -11,7 +20,10 @@ void edge::addCar(car* c) {
     }
     temp->next = c;
 }
-
+/**
+ * remove car from the top of the car list
+ * @return the removal car
+ */
 car* edge::removeCar(){
     car* temp = carList;
     carList = carList->next;
@@ -19,7 +31,27 @@ car* edge::removeCar(){
     return temp;
 }
 
+/**
+ * @return the spesific junction to move to
+ */
 int edge::getProbability() {
     srand (time(NULL)); //******* maybe ot side of function
     return neighbor[ rand() % (number_of_neighbors+1)];
+}
+
+/**
+ * print the junction with the car list
+ * @param out : ostream cout
+ * @param junction
+ * @return cout
+ */
+ostream& operator<<(ostream& out , edge& junction ){
+    out<<junction.id<<": ";
+    car* head = junction.carList;
+    while(head){
+        out<<head->getId();
+        out<<(head->next ? " ":"");
+    }
+    out<<endl;
+    return out;
 }
