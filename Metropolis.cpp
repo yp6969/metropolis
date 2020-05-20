@@ -46,6 +46,9 @@ Metropolis::Metropolis(double** _graph , unsigned int size) : size(size) , num_o
     }
 }
 
+/**
+ * distractor
+ */
 Metropolis::~Metropolis() {
     for(int i=0 ; i<size ; i++)
         delete junction[i];
@@ -66,12 +69,13 @@ void Metropolis::tick(){
         while(head || head->get_num_of_move() == num_of_ticks){
             next_id = junction[i]->getProbability();
             junction[next_id-1]->addCar(junction[i]->removeCar());
-            (*head)++;
+            (*head)++; // update the car to know it moved
             head->setLocation(next_id);
             (*getRoad(i+1 , next_id))++; // update the pollution
             head = head->next;
         }
     }
+    num_of_ticks++;
 }
 
 /**

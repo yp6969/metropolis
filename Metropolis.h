@@ -6,7 +6,7 @@
 #define METROPOLIN_METROPOLIS_H
 #include <cmath>
 #include "edge.h"
-#include "graph.h"
+#include "vertice.h"
 
 class Metropolis {
 private:

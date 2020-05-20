@@ -14,7 +14,7 @@ private:
     double pollution;
 
 public:
-    static unsigned int poll_const;
+    static double poll_const;
 
     vertice(const unsigned int from, const unsigned int to, const double length);
 
