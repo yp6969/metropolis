@@ -39,11 +39,23 @@ Metropolis::Metropolis(double** _graph , unsigned int size) : size(size) , num_o
         for(unsigned int j=0 ; j<size ; j++){
             if(_graph[i][j] != 0){
                 road[cnt_roads++] = new vertice(i+1 , j+1 , _graph[i][j] );
-                junction[i]->setNeighbor( cnt_neighbors++ , j+1);
+                junction[i]->setNeighbor( ++cnt_neighbors , j+1);
             }
         }
         cnt_neighbors = 0;
     }
+//    for (int k = 0; k < size; k++) {
+//        for (int i = 0; i < junction[k]->getNumber_of_neighbors()+1 ; i++) {
+//            cout<<(*junction[k])[i]<<" ";
+//        }
+//        cout<<endl;
+//    }
+//    junction[0]->addCar(new car(5 ,4));
+//    cout<<junction[0]->getCarList()->getId();
+//    junction[0]->addCar(new car(56 ,4));
+//    cout<<junction[0]->getCarList()->next->getId();
+//    junction[0]->addCar(new car(111 ,4));
+//    cout<<junction[0]->getCarList()->next->next->getId();
 }
 
 /**
@@ -57,6 +69,27 @@ Metropolis::~Metropolis() {
     for(int i=0 ; i<num_of_roads ; i++)
         delete road[i];
     delete [] road;
+}
+
+/**
+ * create car list for each junction
+ * @param cars
+ * @return
+ */
+bool Metropolis::createCarList(ifstream& cars){
+    string s;
+    int id;
+    for (int i = 0; i < size ; ++i) {
+        getline(cars , s);
+        stringstream sso(s);
+        sso>>s; // junk
+        //cout<<s<<endl; // print the function id like 1: ....(cars)...
+        while(sso>>id){ // insert the car id into varlible
+            //cout<<id<<" "; // print it out
+            junction[i]->addCar(new car(id, junction[i]->getId())); // add the car
+        }
+        //cout<<endl;
+    }
 }
 
 /**
@@ -106,6 +139,7 @@ void Metropolis::printCarList(){
     }
 }
 
+
 /**
  *
  * @param from
@@ -116,3 +150,4 @@ vertice* Metropolis::getRoad(int from , int to ){
     for(int i=0 ; i<num_of_roads ; i++)
         if(from == road[i]->getFrom() && to == road[i]->getTo()) return road[i];
 }
+

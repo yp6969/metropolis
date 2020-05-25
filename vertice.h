@@ -5,6 +5,9 @@
 #ifndef METROPOLIN_VERTICE_H
 #define METROPOLIN_VERTICE_H
 #include <cstdio>
+#include <iostream>
+
+extern double poll_const;
 
 class vertice {
 private:
@@ -14,25 +17,23 @@ private:
     double pollution;
 
 public:
-    static double poll_const;
 
     vertice(const unsigned int from, const unsigned int to, const double length);
 
-    void operator++(int){ pollution += poll_const/length;} // update the pollution
+
+    const vertice operator++(int);
 
 
     /*
      * getters and setters
      */
-    const unsigned int getFrom() const;
+    const unsigned int getFrom() const {return from;}
 
-    const unsigned int getTo() const;
+    const unsigned int getTo() const {return to;}
 
-    const double getLength() const;
+    const double getLength() const {return length;}
 
-    double getPollution() const;
-
-    void setPollution(double pollution);
+    double getPollution() const {return pollution;}
 
 };
 

@@ -5,8 +5,13 @@
 #ifndef METROPOLIN_METROPOLIS_H
 #define METROPOLIN_METROPOLIS_H
 #include <cmath>
+#include <cstdlib>
+#include <fstream>
+#include <sstream>
 #include "edge.h"
 #include "vertice.h"
+
+
 
 class Metropolis {
 private:
@@ -20,12 +25,14 @@ public:
     Metropolis(double** graph , unsigned int size);
     ~Metropolis();
 
+    bool createCarList(ifstream& cars);
     void tick(); //iterate time skip
     void printPollution();
     void printCarList();
 
 
-        /*
+
+    /*
          * getters and setters
          */
     vertice* getRoad(int from , int to );

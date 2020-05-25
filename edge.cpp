@@ -7,13 +7,29 @@
 edge::edge(unsigned int id , unsigned int number_of_neighbors) : id(id) , number_of_neighbors(number_of_neighbors){
     neighbor = new unsigned int[number_of_neighbors+1];
     neighbor[0] = id; // neighbor[0] is me !
+    carList = NULL;
 }
+
+edge::~edge(){
+    car* c = carList;
+    delete [] neighbor;
+    while(c){
+        car* prev = c;
+        c = c->next;
+        delete prev;
+    }
+}
+
 
 /**
  * adding car to the end of the car list
  * @param c
  */
 void edge::addCar(car* c) {
+    if(!carList){
+        carList = c;
+        return;
+    }
     car* temp = carList;
     while(temp->next){
         temp = temp->next;

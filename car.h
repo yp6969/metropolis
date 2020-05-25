@@ -19,8 +19,6 @@ public:
 
     car(int id , int location);
     car(const car& c);
-
-
     /*
      * getters setters
      */

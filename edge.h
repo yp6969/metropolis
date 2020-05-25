@@ -23,12 +23,14 @@ public:
     car* removeCar();
     int getProbability();
     friend ostream& operator<<(ostream& out , edge& junction );
+    unsigned int& operator[](int i){ return neighbor[i];}
     //void moveCar(unsigned int id);
 
     /*
      * getters and setters
      */
     const unsigned int getId() const { return id;}
+    const unsigned int getNumber_of_neighbors() const { return number_of_neighbors;}
     void setNeighbor(int i , unsigned int id){ neighbor[i] = id;}
     car* getCarList() const { return carList;}
 
