@@ -36,6 +36,21 @@ int main(int argc , char* argv[]) {
     createMatrix(matrix , _graph , size );
     Metropolis* metropolis = new Metropolis( _graph , size);
     metropolis->createCarList(cars);
+
+    int time ;
+    cout<<"Please enter C"<<endl;
+    //cin>>poll_const;
+    cout<<"Please enter time"<<endl;
+    //cin>>time;
+    poll_const = 7;
+    time = 9;
+
+    for (int i = 0 ; i < time ; i++ ) {
+        metropolis->tick();
+    }
+
+
+    metropolis->printPollution();
     metropolis->printCarList();
 
     return 0;

@@ -97,15 +97,17 @@ bool Metropolis::createCarList(ifstream& cars){
  */
 void Metropolis::tick(){
     int next_id;
+    vertice* t_road;
     for(int i=0 ; i<size ; i++){
         car* head = junction[i]->getCarList();
-        while(head || head->get_num_of_move() == num_of_ticks){
+        while(head && head->get_num_of_move() == num_of_ticks){
             next_id = junction[i]->getProbability();
             junction[next_id-1]->addCar(junction[i]->removeCar());
             (*head)++; // update the car to know it moved
             head->setLocation(next_id);
-            (*getRoad(i+1 , next_id))++; // update the pollution
-            head = head->next;
+            t_road = getRoad(i+1 , next_id);
+            if(t_road) (*t_road)++; // update the pollution
+            head = junction[i]->getCarList();
         }
     }
     num_of_ticks++;
@@ -135,7 +137,7 @@ void Metropolis::printPollution(){
  */
 void Metropolis::printCarList(){
     for(int i=0 ; i<size ; i++){
-        cout<<junction[i];
+        cout<<(*junction[i]);
     }
 }
 
@@ -149,5 +151,6 @@ void Metropolis::printCarList(){
 vertice* Metropolis::getRoad(int from , int to ){
     for(int i=0 ; i<num_of_roads ; i++)
         if(from == road[i]->getFrom() && to == road[i]->getTo()) return road[i];
+    return NULL;
 }
 

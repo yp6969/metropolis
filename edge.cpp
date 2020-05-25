@@ -8,6 +8,7 @@ edge::edge(unsigned int id , unsigned int number_of_neighbors) : id(id) , number
     neighbor = new unsigned int[number_of_neighbors+1];
     neighbor[0] = id; // neighbor[0] is me !
     carList = NULL;
+    srand (time(NULL)); //******* maybe ot side of function
 }
 
 edge::~edge(){
@@ -51,7 +52,7 @@ car* edge::removeCar(){
  * @return the spesific junction to move to
  */
 int edge::getProbability() {
-    srand (time(NULL)); //******* maybe ot side of function
+
     return neighbor[ rand() % (number_of_neighbors+1)];
 }
 
@@ -67,6 +68,7 @@ ostream& operator<<(ostream& out , edge& junction ){
     while(head){
         out<<head->getId();
         out<<(head->next ? " ":"");
+        head = head->next;
     }
     out<<endl;
     return out;

@@ -15,6 +15,7 @@ private:
     unsigned int* neighbor; // array of id naighbors including me in [0]
     car* carList; // list of cars
 
+
 public:
     edge(unsigned int id , unsigned int number_of_neighbors);
     ~edge();
