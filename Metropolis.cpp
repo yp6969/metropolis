@@ -44,18 +44,6 @@ Metropolis::Metropolis(double** _graph , unsigned int size) : size(size) , num_o
         }
         cnt_neighbors = 0;
     }
-//    for (int k = 0; k < size; k++) {
-//        for (int i = 0; i < junction[k]->getNumber_of_neighbors()+1 ; i++) {
-//            cout<<(*junction[k])[i]<<" ";
-//        }
-//        cout<<endl;
-//    }
-//    junction[0]->addCar(new car(5 ,4));
-//    cout<<junction[0]->getCarList()->getId();
-//    junction[0]->addCar(new car(56 ,4));
-//    cout<<junction[0]->getCarList()->next->getId();
-//    junction[0]->addCar(new car(111 ,4));
-//    cout<<junction[0]->getCarList()->next->next->getId();
 }
 
 /**
