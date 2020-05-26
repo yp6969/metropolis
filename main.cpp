@@ -1,15 +1,8 @@
 #include <string>
 #include "Metropolis.h"
-#define MAX_EDGE 500
-#define MAX_CARS 10000
 
 void InputError();
-//bool checkInput(ifstream& metrix , ifstream& cars , double** &_graph , unsigned int& size);
-bool createMatrix(ifstream& matrix ,  double** &_graph , unsigned int& size);
-//bool checkCars(ifstream& cars);
-bool checkMatrixLine(string& str , unsigned int size);
-bool is_integer(const string& s);
-
+void createMatrix(ifstream& matrix ,  double** &_graph , unsigned int& size);
 double poll_const;
 
 int main(int argc , char* argv[]) {
@@ -29,7 +22,7 @@ int main(int argc , char* argv[]) {
     unsigned int size = 9;
 
     double** _graph = new double*[size];
-    for (int k = 0; k < size; ++k) {
+    for (unsigned int k = 0; k < size; ++k) {
         _graph[k] = new double [size];
     }
 
@@ -38,17 +31,16 @@ int main(int argc , char* argv[]) {
     metropolis->createCarList(cars);
 
     int time ;
-    cout<<"Please enter C"<<endl;
-    //cin>>poll_const;
-    cout<<"Please enter time"<<endl;
-    //cin>>time;
-    poll_const = 7;
-    time = 9;
+    //cout<<"Please enter C"<<endl;
+    cin>>poll_const;
+    //cout<<"Please enter time"<<endl;
+    cin>>time;
+    //poll_const = 7;
+    //time = 0;
 
     for (int i = 0 ; i < time ; i++ ) {
         metropolis->tick();
     }
-
 
     metropolis->printPollution();
     metropolis->printCarList();
@@ -63,11 +55,11 @@ int main(int argc , char* argv[]) {
  * @param size
  * @return
  */
-bool createMatrix(ifstream& matrix ,  double** &_graph , unsigned int& size){
+void createMatrix(ifstream& matrix ,  double** &_graph , unsigned int& size){
     string s;
     getline(matrix , s);
-    for (int i = 0; i < size; ++i) {
-        for (int j = 0; j < size; ++j) {
+    for (unsigned int i = 0; i < size; ++i) {
+        for (unsigned int j = 0; j < size; ++j) {
             matrix>>_graph[i][j];
         }
     }
@@ -77,31 +69,7 @@ bool createMatrix(ifstream& matrix ,  double** &_graph , unsigned int& size){
  * exit if the input is not correct
  */
 void InputError(){
-    cerr<<"ERROR: Invaild input."<<endl;
+    cerr<<"Error: Invalid input."<<endl;
     exit(0);
 }
-
-/**
- * chek if the number is an integer
- * @param s
- * @return
- */
-bool is_integer(const string& s){
-    string::const_iterator it = s.begin();
-    while (it != s.end() && isdigit(*it)) ++it;
-    return !s.empty() && it == s.end();
-}
-
-bool checkMatrix(ifstream& matrix , unsigned int& size){
-    string s;
-    getline(matrix , s);
-    if(!is_integer(s)) return false;
-    size = atoi(s.c_str());
-    for (int i = 0; i < size ; ++i) {
-        for (int j = 0; j < size ; ++j) {
-
-        }
-    }
-}
-
 

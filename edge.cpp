@@ -63,13 +63,14 @@ int edge::getProbability() {
  * @return cout
  */
 ostream& operator<<(ostream& out , edge& junction ){
-    out<<junction.id<<": ";
+    out<<junction.id<<":";
     car* head = junction.carList;
     while(head){
+        out<<" ";
         out<<head->getId();
-        out<<(head->next ? " ":"");
         head = head->next;
     }
     out<<endl;
+    out.flush();
     return out;
 }

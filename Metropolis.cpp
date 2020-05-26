@@ -12,8 +12,8 @@ Metropolis::Metropolis(double** _graph , unsigned int size) : size(size) , num_o
      * create the junctions
      * count number of edges
      */
-    for(int i=0 ; i<size ; i++) {
-        for (int j = 0; j < size; j++) {
+    for(unsigned int i=0 ; i<size ; i++) {
+        for (unsigned int j = 0; j < size; j++) {
             if (_graph[i][j] != 0){
                 cnt_roads++;
                 cnt_neighbors++;
@@ -62,11 +62,11 @@ Metropolis::Metropolis(double** _graph , unsigned int size) : size(size) , num_o
  * distractor
  */
 Metropolis::~Metropolis() {
-    for(int i=0 ; i<size ; i++)
+    for(unsigned int i=0 ; i<size ; i++)
         delete junction[i];
     delete [] junction;
 
-    for(int i=0 ; i<num_of_roads ; i++)
+    for(unsigned int i=0 ; i<num_of_roads ; i++)
         delete road[i];
     delete [] road;
 }
@@ -76,10 +76,10 @@ Metropolis::~Metropolis() {
  * @param cars
  * @return
  */
-bool Metropolis::createCarList(ifstream& cars){
+void Metropolis::createCarList(ifstream& cars){
     string s;
     int id;
-    for (int i = 0; i < size ; ++i) {
+    for (unsigned int i = 0; i < size ; ++i) {
         getline(cars , s);
         stringstream sso(s);
         sso>>s; // junk
@@ -98,7 +98,7 @@ bool Metropolis::createCarList(ifstream& cars){
 void Metropolis::tick(){
     int next_id;
     vertice* t_road;
-    for(int i=0 ; i<size ; i++){
+    for(unsigned int i=0 ; i<size ; i++){
         car* head = junction[i]->getCarList();
         while(head && head->get_num_of_move() == num_of_ticks){
             next_id = junction[i]->getProbability();
@@ -119,8 +119,8 @@ void Metropolis::tick(){
 void Metropolis::printPollution(){
     double poll;
     vertice* v;
-    for(int i=0 ; i<size ; i++){
-        for(int j=0 ; j<size ; j++){
+    for(unsigned int i=0 ; i<size ; i++){
+        for(unsigned int j=0 ; j<size ; j++){
             if( (v = getRoad(i+1,j+1)) != NULL ) {
                 poll = v->getPollution();
                 cout << round(100 * poll) / 100;
@@ -136,9 +136,10 @@ void Metropolis::printPollution(){
  * print the information about the cars in the junctions
  */
 void Metropolis::printCarList(){
-    for(int i=0 ; i<size ; i++){
+    for(unsigned int i=0 ; i<size ; i++){
         cout<<(*junction[i]);
     }
+    cout<<endl;
 }
 
 
@@ -149,8 +150,8 @@ void Metropolis::printCarList(){
  * @return the road [from][to]
  */
 vertice* Metropolis::getRoad(int from , int to ){
-    for(int i=0 ; i<num_of_roads ; i++)
-        if(from == road[i]->getFrom() && to == road[i]->getTo()) return road[i];
+    for(unsigned int i=0 ; i<num_of_roads ; i++)
+        if((unsigned)from == road[i]->getFrom() && (unsigned)to == road[i]->getTo()) return road[i];
     return NULL;
 }
 

@@ -25,7 +25,7 @@ public:
     Metropolis(double** graph , unsigned int size);
     ~Metropolis();
 
-    bool createCarList(ifstream& cars);
+    void createCarList(ifstream& cars);
     void tick(); //iterate time skip
     void printPollution();
     void printCarList();
